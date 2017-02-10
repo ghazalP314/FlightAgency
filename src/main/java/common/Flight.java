@@ -1,5 +1,7 @@
 package common;
 
+import java.util.ArrayList;
+
 /**
  * Created by ghazal on 2/10/2017 AD.
  */
@@ -15,6 +17,7 @@ public class Flight {
     private int price_adult=0;
     private int price_child=0;
     private int price_infant=0;
+    private ArrayList<ChairClass> classes;
 
     public Flight(String[] finfo){
         airline=finfo[0];
@@ -27,7 +30,8 @@ public class Flight {
         airplane=finfo[7];
     }
 
+    public void  set_classes(ArrayList<ChairClass> chc) { classes=chc; }
     public String get_origin() { return origin; }
-
+    public ArrayList<ChairClass> get_classes() { return classes; }
     // todo: handle classes, set prices
 }
