@@ -15,13 +15,16 @@ public class ReserveSystem {
         ArrayList<Flight> result=new ArrayList<Flight>();
         ConnectCompany c=new ConnectCompany(comp_server_addr,comp_port);
         ArrayList<String> flights=c.QueryFlight(origin,dest,date);
+//        System.out.println("flights : "+flights.size());
+//        for(int k =0;k<flights.size();k++)
+//            System.out.println(flights.get(k));
         int i,j;
         Flight temp_flight;
         String[] temp_classes;
         ArrayList<String> temp_prices=new ArrayList<String>();
-        for(i=0;i<flights.size()/2;i++){
+        for(i=0;i<flights.size()/2;i+=2){
             temp_flight=new Flight(flights.get(i).split(" "));
-            temp_classes=flights.get(i=i+1).split(" ");
+            temp_classes=flights.get(i+1).split(" ");
             for(j=0;j<temp_classes.length;j++){
                 temp_prices.add(c.QueryPrice(origin, dest, temp_flight.getAirline(), temp_classes[j].charAt(0)));
             }

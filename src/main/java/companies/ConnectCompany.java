@@ -30,11 +30,12 @@ public class ConnectCompany {
         ArrayList<String> result=new ArrayList<String>();
         String flight_info;
         while ((flight_info=reader.readLine())!=null){
-            System.out.println(flight_info);
+//            System.out.println(flight_info);
             result.add(flight_info);
             result.add(reader.readLine());
             if(!reader.ready()){ break; }
         }
+//        System.out.println("result : "+result.size());
         return result;
     }
 
