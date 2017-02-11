@@ -31,12 +31,14 @@ public class Flight {
 
     public void set_classes(String[] _classes,ArrayList<String> prices) {
         int i;
-        System.out.println(prices.size());
         for(i=0;i<_classes.length;i++){
             classes.add(new ChairClass(_classes[i].charAt(0),_classes[i].charAt(1),prices.get(i)));
         }
     }
     public String getOrigin() { return origin; }
+    public String getDest() { return dest; }
+    public String getFlight_num() { return flight_num; }
+    public String getDate() { return date; }
     public String getAirline() { return airline; }
     public ArrayList<ChairClass> get_classes() { return classes; }
 }

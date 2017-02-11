@@ -1,5 +1,7 @@
 import common.Flight;
+import common.Reserve;
 import companies.ConnectCompany;
+import user.Person;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,15 +28,23 @@ public class ReserveSystem {
             temp_flight.set_classes(temp_classes,temp_prices);
             result.add(temp_flight);
         }
+        c.close();
         return result;
     }
+    public void reserve(Flight f,char _class,ArrayList<Person> p,String comp_server,int comp_port)throws IOException{
+        Reserve r=new Reserve(f,_class,p);
+        ConnectCompany c=new ConnectCompany(comp_server,comp_port);
+        String[] result=c.QueryReserve(r).split(" ");
+        r.set_token(result[0]);
+    }
+
     public static void main(String[] args) {
         try {
             ArrayList<Flight> flights= (new ReserveSystem()).ask_about_flight("THR", "MHD", "05Feb","188.166.78.119",8081);
             Flight f=flights.get(0);
             System.out.println("Adult prices: "+(f.get_classes().get(1).getPrice_adult()));
-            System.out.println("Adult prices: "+(f.get_classes().get(1).getPrice_child()));
-            System.out.println("Adult prices: "+(f.get_classes().get(1).getPrice_infant()));
+            System.out.println("Child prices: "+(f.get_classes().get(1).getPrice_child()));
+            System.out.println("Infant prices: "+(f.get_classes().get(1).getPrice_infant()));
         }catch (IOException exp){
             System.out.print("An IOException occurred!");
         }
