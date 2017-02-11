@@ -17,11 +17,7 @@ public class ConnectCompany {
     PrintWriter writer;
     BufferedReader reader;
 
-    public void close() throws IOException{
-        writer.close();
-        reader.close();
-        client.close();
-    }
+
 
     public ConnectCompany(String server_addr, int port) throws IOException {
         client = new Socket(server_addr,port);
@@ -34,6 +30,7 @@ public class ConnectCompany {
         ArrayList<String> result=new ArrayList<String>();
         String flight_info;
         while ((flight_info=reader.readLine())!=null){
+            System.out.println(flight_info);
             result.add(flight_info);
             result.add(reader.readLine());
             if(!reader.ready()){ break; }
@@ -54,4 +51,9 @@ public class ConnectCompany {
         return reader.readLine();
     }
 
+    public void close() throws IOException{
+        writer.close();
+        reader.close();
+        client.close();
+    }
 }
