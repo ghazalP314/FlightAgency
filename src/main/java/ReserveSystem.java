@@ -43,8 +43,8 @@ public class ReserveSystem {
             ArrayList<Flight> flights= (new ReserveSystem()).ask_about_flight("THR", "MHD", "05Feb","188.166.78.119",8081);
             Flight f=flights.get(0);
             System.out.println("Adult prices: "+(f.get_classes().get(1).getPrice_adult()));
-            System.out.println("Child prices: "+(f.get_classes().get(1).getPrice_child()));
-            System.out.println("Infant prices: "+(f.get_classes().get(1).getPrice_infant()));
+//            System.out.println("Child prices: "+(f.get_classes().get(1).getPrice_child()));
+//            System.out.println("Infant prices: "+(f.get_classes().get(1).getPrice_infant()));
         }catch (IOException exp){
             System.out.print("An IOException occurred!");
         }
