@@ -14,9 +14,7 @@ public class Flight {
     private String t_departure;
     private String t_arrival;
     private String airplane;
-    private int price_adult=0;
-    private int price_child=0;
-    private int price_infant=0;
+
     private ArrayList<ChairClass> classes;
 
     public Flight(String[] finfo){
@@ -28,10 +26,17 @@ public class Flight {
         t_departure=finfo[5];
         t_arrival=finfo[6];
         airplane=finfo[7];
+        classes= new ArrayList<ChairClass>();
     }
 
-    public void  set_classes(ArrayList<ChairClass> chc) { classes=chc; }
-    public String get_origin() { return origin; }
+    public void set_classes(String[] _classes,ArrayList<String> prices) {
+        int i;
+        System.out.println(prices.size());
+        for(i=0;i<_classes.length;i++){
+            classes.add(new ChairClass(_classes[i].charAt(0),_classes[i].charAt(1),prices.get(i)));
+        }
+    }
+    public String getOrigin() { return origin; }
+    public String getAirline() { return airline; }
     public ArrayList<ChairClass> get_classes() { return classes; }
-    // todo: handle classes, set prices
 }
