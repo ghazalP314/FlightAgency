@@ -36,12 +36,18 @@ public class ReserveSystem {
         ConnectCompany c=new ConnectCompany(comp_server,comp_port);
         String[] result=c.QueryReserve(r).split(" ");
         r.set_token(result[0]);
+        System.out.println(r.getToken());
     }
 
     public static void main(String[] args) {
         try {
-            ArrayList<Flight> flights= (new ReserveSystem()).ask_about_flight("THR", "MHD", "05Feb","188.166.78.119",8081);
+            ReserveSystem rs;
+            ArrayList<Flight> flights= (rs=new ReserveSystem()).ask_about_flight("THR", "MHD", "05Feb","188.166.78.119",8081);
             Flight f=flights.get(0);
+            Person p=new Person("Ghazal","Meshkati","dddd","adult");
+            ArrayList<Person> persons=new ArrayList<Person>();
+            persons.add(p);
+            rs.reserve(f,'M',persons,"188.166.78.119",8081);
             System.out.println("Adult prices: "+(f.get_classes().get(1).getPrice_adult()));
 //            System.out.println("Child prices: "+(f.get_classes().get(1).getPrice_child()));
 //            System.out.println("Infant prices: "+(f.get_classes().get(1).getPrice_infant()));
