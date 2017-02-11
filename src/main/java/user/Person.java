@@ -16,4 +16,7 @@ public class Person {
         age=_age;
     }
     public String getAge() { return age; }
+    public String getFname() { return fname; }
+    public String getSname() { return sname; }
+    public String getnID() { return nID; }
 }

@@ -51,6 +51,10 @@ public class ConnectCompany {
                 " "+r.getFlight().getAirline()+" "+r.getFlight().getFlight_num()+" "+r.getChair_class()+" "+
                 r.get_num_of_adults()+" "+r.get_num_of_childs()+" "+r.get_num_of_infants();
         writer.println(query);
+        //---> I have assumed that array of Person is in order 1)adult 2)child 3)infant
+        ArrayList<Person> persons=r.getPersons();
+        for(int i=0;i<persons.size();i++)
+            writer.println(persons.get(i).getFname()+" "+persons.get(i).getSname()+" "+persons.get(i).getnID());
         return reader.readLine();
     }
 

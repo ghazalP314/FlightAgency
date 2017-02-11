@@ -21,6 +21,8 @@ public class Reserve {
 
     public Flight getFlight() { return flight; }
     public char getChair_class() { return chair_class; }
+    public String getToken() { return token; }
+    public ArrayList<Person> getPersons() { return persons; }
     public int get_num_of_adults() {
         int i,result=0;
         for(i=0;i<persons.size();i++)
