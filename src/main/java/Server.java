@@ -1,9 +1,6 @@
 
 
-import common.ChairClass;
 import common.Flight;
-import common.Reserve;
-import user.Person;
 
 
 import java.net.*;
@@ -14,13 +11,13 @@ import java.util.ArrayList;
 /**
  * Created by daddy on 2/11/17.
  */
-public class systemServer {
+public class Server {
     Socket socket;
     PrintWriter writer;
     BufferedReader reader;
 
 
-    public systemServer(int portNumber) throws  IOException{
+    public Server(int portNumber , String IP,int port) throws  IOException{
         ServerSocket listener = new ServerSocket(portNumber);
         socket = listener.accept();
         writer = new PrintWriter(socket.getOutputStream(), true);
@@ -28,6 +25,7 @@ public class systemServer {
         writer.println("********************************************************");
         writer.println("*** Welcome to the online ticket reservation service ***");
         writer.println("********************************************************");
+        userRequest(IP,port);
 
 //        System.out.println(reader.readLine());
 
@@ -38,10 +36,17 @@ public class systemServer {
         String[] in_splitted = in.split(" ");
 
         if(in_splitted[0].equals("search")){
-            ReserveSystem rs;
-            ArrayList<Flight> flights= (rs=new ReserveSystem()).ask_about_flight(in_splitted[1], in_splitted[2], in_splitted[3],IP,port);
-            int i=0;
-            System.out.println(flights.size());
+            OnlineReserveSystem rs;
+            ArrayList<Flight> flights= (rs=new OnlineReserveSystem()).ask_about_flight(in_splitted[1], in_splitted[2], in_splitted[3],IP,port);
+            for (int i =0;i<flights.size();i++){
+                writer.println("Flight : "+flights.get(i).getAirline()+" "+flights.get(i).getFlight_num()+" Departure : "
+                        +flights.get(i).getT_departure().charAt(0)+flights.get(i).getT_departure().charAt(1)+":"+flights.get(i).getT_departure().charAt(2)+flights.get(i).getT_departure().charAt(3)
+                        +" Arrival : "+flights.get(i).getT_arrival().charAt(0)+flights.get(i).getT_arrival().charAt(1)+":"+
+                        flights.get(i).getT_arrival().charAt(2)+flights.get(i).getT_arrival().charAt(3)
+                        +" Airplane : "+flights.get(i).getAirplane());
+            }
+
+
         }
 
 
@@ -59,9 +64,7 @@ public class systemServer {
 
 
     public static void main(String[] args) throws IOException {
-        systemServer ourServer = new systemServer(9092);
-        ourServer.userRequest("188.166.78.119",8081);
-
+        Server ourServer = new Server(9092,"188.166.78.119",8081);
         ourServer.close();
 
 

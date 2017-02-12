@@ -40,5 +40,8 @@ public class Flight {
     public String getFlight_num() { return flight_num; }
     public String getDate() { return date; }
     public String getAirline() { return airline; }
+    public String getT_departure(){return t_departure;}
+    public String getT_arrival(){return  t_arrival;}
+    public String getAirplane(){return airplane;}
     public ArrayList<ChairClass> get_classes() { return classes; }
 }

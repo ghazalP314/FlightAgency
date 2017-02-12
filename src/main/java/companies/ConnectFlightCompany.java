@@ -12,14 +12,14 @@ import java.util.ArrayList;
 /**
  * Created by ghazal on 2/9/2017 AD.
  */
-public class ConnectCompany {
+public class ConnectFlightCompany {
     Socket client;
     PrintWriter writer;
     BufferedReader reader;
 
 
 
-    public ConnectCompany(String server_addr, int port) throws IOException {
+    public ConnectFlightCompany(String server_addr, int port) throws IOException {
         client = new Socket(server_addr,port);
         writer = new PrintWriter(client.getOutputStream(),true);
         reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
@@ -35,7 +35,7 @@ public class ConnectCompany {
             result.add(reader.readLine());
             if(!reader.ready()){ break; }
         }
-//        System.out.println("result : "+result.size());
+        System.out.println("result : "+result.size());
         return result;
     }
 
